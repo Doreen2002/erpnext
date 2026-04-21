@@ -8,6 +8,7 @@
  "field_order": [
   "loyalty_program_name",
   "loyalty_program_type",
+  "calculate_on_net_total",
   "from_date",
   "to_date",
   "column_break_7",
@@ -44,6 +45,12 @@
    "label": "Loyalty Program Type",
    "options": "Single Tier Program\nMultiple Tier Program"
   },
+  {
+    "fieldname": "calculate_on_net_total",
+    "fieldtype": "Check",
+    "label": "Calculate on Net Total"
+  
+   },
   {
    "fieldname": "from_date",
    "fieldtype": "Date",
