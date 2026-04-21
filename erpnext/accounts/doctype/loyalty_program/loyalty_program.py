@@ -109,11 +109,11 @@ def get_loyalty_program_details_with_points(
 		key=lambda rule: rule.min_spent,
 	)
 	for i, d in enumerate(tier_spent_level):
-		if i == 0 or (lp_details.total_spent + current_transaction_amount) >= d.min_spent:
+		if (lp_details.total_spent + current_transaction_amount) >= d.min_spent:
 			lp_details.tier_name = d.tier_name
 			lp_details.collection_factor = d.collection_factor
-		else:
 			break
+		
 
 	return lp_details
 
