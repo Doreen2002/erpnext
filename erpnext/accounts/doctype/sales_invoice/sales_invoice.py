@@ -2075,7 +2075,12 @@ class SalesInvoice(SellingController):
 	# collection of the loyalty points, create the ledger entry for that.
 	def make_loyalty_point_entry(self):
 		returned_amount = self.get_returned_amount()
-		current_amount = flt(self.grand_total) - cint(self.loyalty_amount)
+		calculate_on_net_total = frappe.db.get_value("Loyalty Program", self.loyalty_program, "calculate_on_net_total")
+		current_amount = 0
+		if calculate_on_net_total == 1:
+			current_amount = flt(self.net_total) - cint(self.loyalty_amount)
+		else:
+			current_amount = flt(self.grand_total) - cint(self.loyalty_amount)
 		eligible_amount = current_amount - returned_amount
 		lp_details = get_loyalty_program_details_with_points(
 			self.customer,
